@@ -1,4 +1,4 @@
-package com.example.melonab
+package com.melonab.app
 
 import io.flutter.embedding.android.FlutterActivity
 
