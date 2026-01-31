@@ -1,5 +1,7 @@
 class AppDimens {
 
+  static const double largeCircularRadius = 100;
+
   static const double smallSpacing = 10.0;
   static const double mediumSpacing = 20.0;
   static const double largeSpacing = 30.0;

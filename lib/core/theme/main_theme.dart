@@ -3,6 +3,6 @@ import 'package:melonab/core/theme/themes.dart';
 
 class MainTheme {
 
-  static ThemeData lightTheme = AppThemes.lightTheme;
+  static ThemeData darkTheme = AppThemes.darkTheme;
 
 }

@@ -3,10 +3,10 @@ import 'package:melonab/core/consts/colors.dart';
 
 class AppThemes {
 
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData darkTheme = ThemeData(
     fontFamily: 'YekanBakh',
-    brightness: Brightness.light,
-    scaffoldBackgroundColor: AppSolidColors.lightScaffoldBackground,
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: AppSolidColors.darkScaffoldBackground,
 
     textTheme: TextTheme(
 
@@ -17,11 +17,18 @@ class AppThemes {
         color: AppSolidColors.primary,
       ),
 
+
+      // titles
+      titleMedium: TextStyle(
+        fontSize: 24,
+        fontWeight: .w700
+      ),
+
       // labels
       labelLarge: TextStyle(
         fontSize: 20,
         fontWeight: .w600,
-        color: AppSolidColors.lightPrimaryText.withValues(alpha: .6)
+        color: AppSolidColors.darkPrimaryText.withValues(alpha: .6)
       ),
 
     )

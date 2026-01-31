@@ -11,8 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Melonab',
-      themeMode: ThemeMode.light, // TODO : change to system when dark mode is implemented
-      theme: MainTheme.lightTheme,
+      themeMode: ThemeMode.dark, // TODO : change to system when light mode is implemented
+      theme: MainTheme.darkTheme,
       locale: const Locale('fa', 'IR'),
       supportedLocales: const [
         Locale('fa', 'IR'),
