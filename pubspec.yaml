@@ -34,6 +34,10 @@ flutter:
     # Svg Assets
     - assets/svg/heart.svg
     - assets/svg/search.svg
+    - assets/svg/dual_music_note.svg
+    - assets/svg/music_note.svg
+    - assets/svg/dot_box.svg
+    - assets/svg/heart_mis_broke.svg
 
 
   fonts:

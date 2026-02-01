@@ -30,4 +30,20 @@ class AppGradientColor {
     Colors.transparent,
   ];
 
+
+  static const List<Color> homeScreenCardSmall1 = [
+    Color(0xffe330e3),
+    Color(0xff982598)
+  ];
+
+  static const List<Color> homeScreenCardSmall2 = [
+    Color(0xff6ebdff),
+    Color(0xff008BFF)
+  ];
+
+  static const List<Color> homeScreenCardBig = [
+    Color(0xff67fa61),
+    Color(0xff08CB00)
+  ];
+
 }

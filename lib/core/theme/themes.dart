@@ -31,6 +31,12 @@ class AppThemes {
         color: AppSolidColors.darkPrimaryText.withValues(alpha: .6)
       ),
 
+      labelMedium: TextStyle(
+        fontSize: 18,
+        fontWeight: .w400,
+        color: AppSolidColors.darkPrimaryText
+      ),
+
     )
   );
 
