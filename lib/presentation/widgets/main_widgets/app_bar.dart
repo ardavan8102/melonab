@@ -36,8 +36,6 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           gradientColors: AppGradientColor.primaryFadeGradient,
         ),
 
-        AppDimens.marginSmall.width,
-
         IconSvgButton(
           splashColor: AppSolidColors.secondary,
           iconPath: Assets.svg.heart,
@@ -45,7 +43,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           gradientColors: AppGradientColor.secondaryFadeGradient,
         ),
 
-        AppDimens.paddingLarge.width
+        AppDimens.paddingSmall.width
       ],
     );
   }

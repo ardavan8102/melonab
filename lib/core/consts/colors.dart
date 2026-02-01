@@ -42,7 +42,7 @@ class AppGradientColor {
   ];
 
   static const List<Color> homeScreenCardBig = [
-    Color(0xff67fa61),
+    Color.fromARGB(255, 33, 146, 30),
     Color(0xff08CB00)
   ];
 

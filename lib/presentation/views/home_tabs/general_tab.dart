@@ -3,6 +3,7 @@ import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/gen/assets.gen.dart';
+import 'package:melonab/presentation/widgets/containers/home_big_banner.dart';
 import 'package:melonab/presentation/widgets/containers/home_card_small.dart';
 
 class HomeGeneralTab extends StatelessWidget {
@@ -10,8 +11,6 @@ class HomeGeneralTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    //TextTheme textTheme = Theme.of(context).textTheme;
 
     return Column(
       children: [
@@ -43,16 +42,8 @@ class HomeGeneralTab extends StatelessWidget {
 
         AppDimens.marginLarge.height,
 
-        Container(
-          height: AppDimens.largeRowHeight,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: AppGradientColor.homeScreenCardBig,
-              begin: AlignmentGeometry.bottomLeft,
-              end: AlignmentGeometry.topRight,
-            ),
-          ),
-        )
+        // big banner
+        HomeBigBanner()
       ],
     );
   }
