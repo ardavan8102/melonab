@@ -43,7 +43,7 @@ class HomeGeneralTab extends StatelessWidget {
         AppDimens.marginLarge.height,
 
         // big banner
-        HomeBigBanner()
+        HomeBigBanner(),
       ],
     );
   }
