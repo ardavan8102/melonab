@@ -46,9 +46,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
             AppDimens.marginLarge.height,
 
             // tab contents
-            IndexedStack(
-              index: _selectedIndex,
-              children: _pages,
+            Expanded(
+              child: IndexedStack(
+                index: _selectedIndex,
+                children: _pages,
+              ),
             ),
           ],
         ),
