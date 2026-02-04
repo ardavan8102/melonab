@@ -19,6 +19,7 @@ class HomeGeneralTab extends ConsumerWidget {
 
     return Column(
       children: [
+        // Small Cards
         SizedBox(
           height: AppDimens.mediumRowHeight,
           child: Row(
@@ -65,13 +66,15 @@ class HomeGeneralTab extends ConsumerWidget {
                 final file = files[index];
                 return ListTile(
                   leading: const Icon(Icons.music_note),
-                  title: Text(file.name),
-                  subtitle: Text(file.path),
+                  title: Text(file.artist ?? 'هنرمند ناشناس'),
+                  subtitle: Text(file.name),
                 );
               },
             ),
           ),
         ),
+
+        AppDimens.largeSpacing.height,
       ],
     );
   }

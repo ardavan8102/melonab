@@ -4,11 +4,13 @@ class Mp3File {
   final String path;
   final String name;
   final int? size;
+  final String? artist;
   final DateTime? lastModified;
 
   Mp3File({
     required this.path,
     required this.name,
+    this.artist,
     this.size,
     this.lastModified,
   });

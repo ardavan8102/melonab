@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.8
+  dart_tags: ^0.4.1
   flutter:
     sdk: flutter
   flutter_gen: ^5.12.0
