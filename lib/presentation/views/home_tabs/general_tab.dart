@@ -7,14 +7,13 @@ import 'package:melonab/data/controllers/mp3_controller.dart';
 import 'package:melonab/gen/assets.gen.dart';
 import 'package:melonab/presentation/widgets/containers/home_big_banner.dart';
 import 'package:melonab/presentation/widgets/containers/home_card_small.dart';
+import 'package:melonab/presentation/widgets/song_artwork.dart';
 
-class HomeGeneralTab extends ConsumerWidget {
-  const HomeGeneralTab({super.key});
-  
+class HomeContent extends ConsumerWidget {
+  const HomeContent({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final mp3State = ref.watch(mp3ControllerProvider);
 
     return Column(
@@ -31,16 +30,15 @@ class HomeGeneralTab extends ConsumerWidget {
                   iconBottomRight: Assets.svg.dualMusicNote,
                   iconTopLeft: Assets.svg.musicNote,
                   label: 'جدیدترین',
-                )
+                ),
               ),
-
               Expanded(
                 child: HomeCardSmall(
                   bgColorList: AppGradientColor.homeScreenCardSmall2,
                   iconBottomRight: Assets.svg.heartMisBroke,
                   iconTopLeft: Assets.svg.dualMusicNote,
-                  label: 'محبوب ترین',
-                )
+                  label: 'هنـرمنـدان',
+                ),
               ),
             ],
           ),
@@ -48,29 +46,46 @@ class HomeGeneralTab extends ConsumerWidget {
 
         AppDimens.marginLarge.height,
 
-        // big banner
-        HomeBigBanner(),
+        // Big Banner
+        const HomeBigBanner(),
 
         AppDimens.largeSpacing.height,
 
-
-        // Songs
+        // Songs List
         Expanded(
           child: mp3State.when(
-            loading: () =>
-              const Center(child: CircularProgressIndicator()),
-            error: (e, _) => Center(child: Text(e.toString())),
-            data: (files) => ListView.builder(
-              itemCount: files.length,
-              itemBuilder: (context, index) {
-                final file = files[index];
-                return ListTile(
-                  leading: const Icon(Icons.music_note),
-                  title: Text(file.artist ?? 'هنرمند ناشناس'),
-                  subtitle: Text(file.name),
-                );
-              },
-            ),
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (e, _) => Center(child: Text('خطا در بارگذاری: $e')),
+            data: (files) {
+              if (files.isEmpty) {
+                return const Center(child: Text("آهنگی پیدا نشد"));
+              }
+              return ListView.builder(
+                padding: const EdgeInsets.only(bottom: 100), 
+                itemCount: files.length,
+                itemBuilder: (context, index) {
+                  final file = files[index];
+                  return ListTile(
+                    contentPadding: const EdgeInsets.symmetric(vertical: 4),
+                    leading: SongArtworkWidget(songId: file.id),
+                    title: Text(
+                      file.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text(
+                      file.artist ?? 'هنرمند ناشناس',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    onTap: () {
+                      // player code
+                    },
+                  );
+                },
+              );
+            },
           ),
         ),
 

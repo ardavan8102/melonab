@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:melonab/data/models/mp3_model.dart';
 import 'package:melonab/data/services/media_store.dart';
@@ -14,15 +13,8 @@ class Mp3Controller extends AsyncNotifier<List<Mp3File>> {
 
     final songs = await MediaStoreService.getSongs();
 
-    final mp3s = songs.map((e) {
-      return Mp3File(
-        name: e['title'] ?? 'Unknown',
-        artist: e['artist'],
-        path: e['path'],
-      );
-    }).toList();
-
-    debugPrint('MP3 COUNT: ${mp3s.length}');
-    return mp3s;
-  }
+    return songs
+        .map((e) => Mp3File.fromMap(e))
+        .toList();
+      }
 }

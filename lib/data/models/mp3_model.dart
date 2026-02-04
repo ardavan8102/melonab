@@ -1,26 +1,22 @@
-import 'dart:io';
-
 class Mp3File {
-  final String path;
-  final String name;
-  final int? size;
+  final int id; // اضافه شده
+  final String title;
   final String? artist;
-  final DateTime? lastModified;
+  final String path;
 
   Mp3File({
+    required this.id,
+    required this.title,
     required this.path,
-    required this.name,
     this.artist,
-    this.size,
-    this.lastModified,
   });
 
-  factory Mp3File.fromFile(File file) {
+  factory Mp3File.fromMap(Map<String, dynamic> map) {
     return Mp3File(
-      path: file.path,
-      name: file.path.split('/').last,
-      size: file.lengthSync(),
-      lastModified: file.lastModifiedSync(),
+      id: (map['id'] as num).toInt(),
+      title: map['title'] ?? 'Unknown',
+      artist: map['artist'],
+      path: map['path'],
     );
   }
 }
