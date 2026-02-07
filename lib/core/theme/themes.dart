@@ -5,10 +5,12 @@ class AppThemes {
 
   static ThemeData darkTheme = ThemeData(
     fontFamily: 'YekanBakh',
-    brightness: Brightness.dark,
 
     scaffoldBackgroundColor: AppSolidColors.darkScaffoldBackground,
-    colorScheme: ColorScheme.fromSeed(seedColor: AppSolidColors.primary),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: AppSolidColors.primary,
+      brightness: Brightness.dark,
+    ),
     
     useMaterial3: false,
 
@@ -18,7 +20,7 @@ class AppThemes {
       headlineLarge: TextStyle(
         fontSize: 50,
         fontWeight: .w900,
-        color: AppSolidColors.primary,
+        color: AppSolidColors.accent,
       ),
 
 

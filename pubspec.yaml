@@ -28,6 +28,9 @@ flutter:
   uses-material-design: true
 
   assets:
+    # PNG assets
+    - assets/img/melonab_logo.png
+    - assets/img/transparent_logo.png
     # Svg Assets
     - assets/svg/heart.svg
     - assets/svg/search.svg
