@@ -13,6 +13,7 @@ class AppSolidColors {
   static const Color lessDarkBackground = Color(0xff292e4b);
 
   static const Color primaryIcon = Color(0xffffffff);
+  static const Color dividerColor = Color(0xffffffff);
 }
 
 

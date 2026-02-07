@@ -1,81 +1,80 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:melonab/core/models/models.dart';
 
 class HomeViewModel extends GetxController {
-
   final searchTextContoller = TextEditingController().obs;
   final searchTextFocusNode = FocusNode().obs;
 
-  final hotRecommendedList = [
-    {
-      "id": "3e27e386df09",
-      "title": "Dorehami",
-      "items_count": 43,
-      "created_at": "2016-06-07T19:57:05-04:00",
-      "type": "playlist",
-      "subtype": "mp3",
-      "share_link": "https://rj.app/pm/LwB7DWng",
-      "count": 43,
-      "followers": 57559,
-      "public": true,
-      "last_updated_at": "2026-02-06T15:27:56-05:00",
-      "bg_color": "#C1B700",
-      "custom_photo": false,
-      "show_track_numbers": false,
-      "bg_colors": [
-          "#C1B700",
-          "#C1B700"
-      ],
-      "photo": "https://assets.rjassets.com/static/playlist/2388276/0ee09cd71aac48b.jpg",
-      "thumbnail": "https://assets.rjassets.com/static/playlist/2388276/0ee09cd71aac48b-thumb.jpg",
-      "photo_player": "https://assets.rjassets.com/static/playlist/2388276/0ee09cd71aac48b.jpg",
-      "default_artwork": "https://assets.rjassets.com/static/playlist/2388276/204b447fdaa196c-artwork.jpg",
-      "created_by": "By Radio Javan",
-      "created_title": "Radio Javan",
-      "owner": {
-          "display_name": "Radio Javan",
-          "photo": "https://assets.rjassets.com/static/profiles/default-rj-thumb.jpg",
-          "thumb": "https://assets.rjassets.com/static/profiles/default-rj-thumb-x.jpg"
-      },
-      "caption": "Kiyarash, Ashvan, Sohrab MJ, Aaren",
-      "myplaylist": false,
-      "collab": false
-    },
-    {
-      "id": "397e42de6e4d",
-      "title": "Mehmooni",
-      "items_count": 40,
-      "created_at": "2018-03-05T15:05:59-05:00",
-      "type": "playlist",
-      "subtype": "mp3",
-      "share_link": "https://rj.app/pm/435PkkPw",
-      "count": 40,
-      "followers": 96511,
-      "public": true,
-      "last_updated_at": "2026-02-06T14:35:58-05:00",
-      "bg_color": "#900405",
-      "custom_photo": false,
-      "show_track_numbers": false,
-      "bg_colors": [
-          "#900405",
-          "#900405"
-      ],
-      "photo": "https://assets.rjassets.com/static/playlist/6628501/8bcea08702d5a18.jpg",
-      "thumbnail": "https://assets.rjassets.com/static/playlist/6628501/8bcea08702d5a18-thumb.jpg",
-      "photo_player": "https://assets.rjassets.com/static/playlist/6628501/8bcea08702d5a18.jpg",
-      "default_artwork": "https://assets.rjassets.com/static/playlist/6628501/d2228c207fd8b8e-artwork.jpg",
-      "created_by": "By Radio Javan",
-      "created_title": "Radio Javan",
-      "owner": {
-          "display_name": "Radio Javan",
-          "photo": "https://assets.rjassets.com/static/profiles/default-rj-thumb.jpg",
-          "thumb": "https://assets.rjassets.com/static/profiles/default-rj-thumb-x.jpg"
-      },
-      "caption": "Donya, Amiaa, Feezer, Fedi",
-      "myplaylist": false,
-      "collab": false
-    },
-  ].obs;
+  // Rx Lists for different data types
+  final RxList<PlaylistModel> featuredPlaylists = RxList<PlaylistModel>();
+  final RxList<PlaylistModel> newPlaylists = RxList<PlaylistModel>();
+  final RxList<ArtistModel> trendingArtists = RxList<ArtistModel>();
+  final RxList<DJMixModel> djMixes = RxList<DJMixModel>();
 
+  @override
+  void onInit() {
+    super.onInit();
+    loadHomeData();
+  }
 
+  /// Load home data from JSON file
+  Future<void> loadHomeData() async {
+    try {
+      final String jsonString =
+          await rootBundle.loadString('assets/json/home_items.json');
+      final Map<String, dynamic> jsonData = jsonDecode(jsonString);
+
+      if (jsonData.containsKey('sections')) {
+        final List<dynamic> sections = jsonData['sections'] as List<dynamic>;
+
+        for (var section in sections) {
+          final String sectionId = section['id'] as String? ?? '';
+          final String sectionType = section['type'] as String? ?? '';
+
+          if (sectionType == 'slider_square') {
+            final List<dynamic> items = section['items'] as List<dynamic>? ?? [];
+
+            switch (sectionId) {
+              case 'playlists':
+                featuredPlaylists.value = items
+                    .map((item) => PlaylistModel.fromJson(
+                        item as Map<String, dynamic>))
+                    .toList();
+                break;
+              case 'top_artists_header':
+                trendingArtists.value = items
+                    .map((item) => ArtistModel.fromJson(
+                        item as Map<String, dynamic>))
+                    .toList();
+                break;
+              case 'home_djmixes':
+                djMixes.value = items
+                    .map((item) =>
+                        DJMixModel.fromJson(item as Map<String, dynamic>))
+                    .toList();
+                break;
+              case 'new_playlists':
+                newPlaylists.value = items
+                    .map((item) => PlaylistModel.fromJson(
+                        item as Map<String, dynamic>))
+                    .toList();
+                break;
+            }
+          }
+        }
+      }
+    } catch (e) {
+      log('Error loading home data: $e');
+    }
+  }
+
+  @override
+  void onClose() {
+    searchTextContoller.value.dispose();
+    super.onClose();
+  }
 }
