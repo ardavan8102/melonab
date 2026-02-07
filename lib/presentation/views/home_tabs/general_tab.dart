@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
+import 'package:melonab/core/consts/urls.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
+import 'package:melonab/core/utils/launch_url.dart';
 import 'package:melonab/data/controllers/mp3_controller.dart';
 import 'package:melonab/gen/assets.gen.dart';
 import 'package:melonab/presentation/widgets/containers/home_big_banner.dart';
@@ -47,7 +49,12 @@ class HomeContent extends ConsumerWidget {
         AppDimens.marginLarge.height,
 
         // Big Banner
-        const HomeBigBanner(),
+        GestureDetector(
+          onTap: () {
+            directToUri(CustomURLS.googleFormUrl);
+          },
+          child: HomeBigBanner()
+        ),
 
         AppDimens.largeSpacing.height,
 

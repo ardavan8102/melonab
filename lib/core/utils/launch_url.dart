@@ -1,6 +1,6 @@
 import 'package:url_launcher/url_launcher.dart';
 
-Future<void> canLaunchUri(String url) async {
+Future<void> directToUri(String url) async {
 
   if (!await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication)) {
 
