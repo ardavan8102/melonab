@@ -6,7 +6,11 @@ class AppThemes {
   static ThemeData darkTheme = ThemeData(
     fontFamily: 'YekanBakh',
     brightness: Brightness.dark,
+
     scaffoldBackgroundColor: AppSolidColors.darkScaffoldBackground,
+    colorScheme: ColorScheme.fromSeed(seedColor: AppSolidColors.primary),
+    
+    useMaterial3: false,
 
     textTheme: TextTheme(
 
@@ -28,13 +32,11 @@ class AppThemes {
       labelLarge: TextStyle(
         fontSize: 20,
         fontWeight: .w600,
-        color: AppSolidColors.darkPrimaryText.withValues(alpha: .6)
       ),
 
       labelMedium: TextStyle(
         fontSize: 18,
         fontWeight: .w400,
-        color: AppSolidColors.darkPrimaryText
       ),
 
     )
