@@ -6,7 +6,9 @@ class AppSolidColors {
   static const Color secondary = Color (0xff578FCA);
   static const Color accent = Color(0xffA1E3F9);
 
-  static const Color primaryText = Color(0xff131313);
+  static const Color darkPrimaryBlue = Color.fromARGB(255, 16, 46, 78);
+
+  static const Color primaryText = Color(0xffffffff);
   static const Color darkScaffoldBackground = Color(0xff383B49);
 }
 

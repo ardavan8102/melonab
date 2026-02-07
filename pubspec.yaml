@@ -31,6 +31,12 @@ flutter:
     # PNG assets
     - assets/img/melonab_logo.png
     - assets/img/transparent_logo.png
+
+    # Icon Assets
+    - assets/icons/music.png
+    - assets/icons/home.png
+    - assets/icons/settings.png
+
     # Svg Assets
     - assets/svg/heart.svg
     - assets/svg/search.svg

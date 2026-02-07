@@ -41,6 +41,11 @@ class AppThemes {
         fontWeight: .w400,
       ),
 
+      labelSmall: TextStyle(
+        fontSize: 16,
+        fontWeight: .w300,
+      ),
+
     )
   );
 
