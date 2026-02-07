@@ -10,6 +10,9 @@ class AppSolidColors {
 
   static const Color primaryText = Color(0xffffffff);
   static const Color darkScaffoldBackground = Color(0xff383B49);
+  static const Color lessDarkBackground = Color(0xff292e4b);
+
+  static const Color primaryIcon = Color(0xffffffff);
 }
 
 

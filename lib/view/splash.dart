@@ -29,7 +29,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.sizeOf(context);
     var textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Center(
@@ -45,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 // Logo
                 Image.asset(
                   Assets.img.transparentLogo.path,
-                  width: media.width * .5,
+                  width: Get.width * .5,
                 ),
             
                 // Brand Name

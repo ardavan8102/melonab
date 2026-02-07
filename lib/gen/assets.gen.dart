@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/Menu.png
+  AssetGenImage get menu => const AssetGenImage('assets/icons/Menu.png');
+
   /// File path: assets/icons/home.png
   AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
 
@@ -25,7 +28,7 @@ class $AssetsIconsGen {
       const AssetGenImage('assets/icons/settings.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [home, music, settings];
+  List<AssetGenImage> get values => [menu, home, music, settings];
 }
 
 class $AssetsImgGen {
@@ -45,6 +48,9 @@ class $AssetsImgGen {
 
 class $AssetsSvgGen {
   const $AssetsSvgGen();
+
+  /// File path: assets/svg/Menu.svg
+  String get menu => 'assets/svg/Menu.svg';
 
   /// File path: assets/svg/dot_box.svg
   String get dotBox => 'assets/svg/dot_box.svg';
@@ -66,6 +72,7 @@ class $AssetsSvgGen {
 
   /// List of all assets
   List<String> get values => [
+    menu,
     dotBox,
     dualMusicNote,
     heart,

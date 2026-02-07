@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:melonab/view/tabs/home_view.dart';
 import 'package:melonab/widgets/main_widgets/bottom_nav.dart';
 
 class MainTabView extends StatefulWidget {
@@ -47,12 +48,7 @@ class _MainTabViewState extends State<MainTabView> with SingleTickerProviderStat
         controller: _tabController,
         children: [
           // Home view
-          Center(
-            child: Text(
-              'Home View',
-              style: textTheme.headlineLarge,
-            ),
-          ),
+          HomeScreenView(),
 
           // songs view
           Center(

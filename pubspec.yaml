@@ -36,6 +36,7 @@ flutter:
     - assets/icons/music.png
     - assets/icons/home.png
     - assets/icons/settings.png
+    - assets/icons/Menu.png
 
     # Svg Assets
     - assets/svg/heart.svg
@@ -44,6 +45,7 @@ flutter:
     - assets/svg/music_note.svg
     - assets/svg/dot_box.svg
     - assets/svg/heart_mis_broke.svg
+    - assets/svg/Menu.svg
 
   fonts:
     - family: YekanBakh

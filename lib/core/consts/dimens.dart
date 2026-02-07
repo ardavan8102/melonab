@@ -4,6 +4,7 @@ class AppDimens {
   static const double mediumRowHeight = 100.0;
   static const double smallRowHeight = 60.0;
 
+  static const double appBarHeight = 56.0;
 
   static const double largeCircularRadius = 100.0;
 
