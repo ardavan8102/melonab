@@ -38,6 +38,8 @@ flutter:
     - assets/icons/home.png
     - assets/icons/settings.png
     - assets/icons/Menu.png
+    - assets/icons/podcast.png
+    - assets/icons/album.png
 
     # Svg Assets
     - assets/svg/search.svg

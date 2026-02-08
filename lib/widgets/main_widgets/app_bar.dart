@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/gen/assets.gen.dart';
+import 'package:melonab/view_model/drawer_menu_view_model.dart';
 import 'package:melonab/view_model/home_view_model.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -25,7 +26,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         padding: const EdgeInsets.only(right: 8.0),
         child: InkWell(
           onTap: () {
-            
+            final drawer = Get.find<DrawerMenuViewModel>();
+            drawer.openDrawer();
           },
           child: SvgPicture.asset(
             Assets.svg.menu,

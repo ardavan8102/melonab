@@ -17,18 +17,31 @@ class $AssetsIconsGen {
   /// File path: assets/icons/Menu.png
   AssetGenImage get menu => const AssetGenImage('assets/icons/Menu.png');
 
+  /// File path: assets/icons/album.png
+  AssetGenImage get album => const AssetGenImage('assets/icons/album.png');
+
   /// File path: assets/icons/home.png
   AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
 
   /// File path: assets/icons/music.png
   AssetGenImage get music => const AssetGenImage('assets/icons/music.png');
 
+  /// File path: assets/icons/podcast.png
+  AssetGenImage get podcast => const AssetGenImage('assets/icons/podcast.png');
+
   /// File path: assets/icons/settings.png
   AssetGenImage get settings =>
       const AssetGenImage('assets/icons/settings.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [menu, home, music, settings];
+  List<AssetGenImage> get values => [
+    menu,
+    album,
+    home,
+    music,
+    podcast,
+    settings,
+  ];
 }
 
 class $AssetsImgGen {
@@ -46,20 +59,24 @@ class $AssetsImgGen {
   List<AssetGenImage> get values => [melonabLogo, transparentLogo];
 }
 
+class $AssetsJsonGen {
+  const $AssetsJsonGen();
+
+  /// File path: assets/json/home_items.json
+  String get homeItems => 'assets/json/home_items.json';
+
+  /// List of all assets
+  List<String> get values => [homeItems];
+}
+
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
   /// File path: assets/svg/Menu.svg
   String get menu => 'assets/svg/Menu.svg';
 
-  /// File path: assets/svg/dot_box.svg
-  String get dotBox => 'assets/svg/dot_box.svg';
-
   /// File path: assets/svg/dual_music_note.svg
   String get dualMusicNote => 'assets/svg/dual_music_note.svg';
-
-  /// File path: assets/svg/heart.svg
-  String get heart => 'assets/svg/heart.svg';
 
   /// File path: assets/svg/heart_mis_broke.svg
   String get heartMisBroke => 'assets/svg/heart_mis_broke.svg';
@@ -73,9 +90,7 @@ class $AssetsSvgGen {
   /// List of all assets
   List<String> get values => [
     menu,
-    dotBox,
     dualMusicNote,
-    heart,
     heartMisBroke,
     musicNote,
     search,
@@ -87,6 +102,7 @@ class Assets {
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImgGen img = $AssetsImgGen();
+  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 

@@ -5,6 +5,7 @@ import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/consts/strings.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/gen/assets.gen.dart';
+import 'package:melonab/view_model/drawer_menu_view_model.dart';
 import 'package:melonab/view_model/splash_view_model.dart';
 import 'package:melonab/widgets/loaders/circle_loader.dart';
 
@@ -25,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     splashViewModel.animateOpacity();
     splashViewModel.loadView();
+    Get.put(DrawerMenuViewModel());
   }
 
   @override

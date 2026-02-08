@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:melonab/view/tabs/home_view.dart';
+import 'package:melonab/view_model/drawer_menu_view_model.dart';
 import 'package:melonab/widgets/main_widgets/bottom_nav.dart';
+import 'package:melonab/widgets/drawer/drawer_menu.dart';
 
 class MainTabView extends StatefulWidget {
   const MainTabView({super.key});
@@ -42,8 +45,13 @@ class _MainTabViewState extends State<MainTabView> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
+    
     TextTheme textTheme = Theme.of(context).textTheme;
+    final drawer = Get.find<DrawerMenuViewModel>();
+
     return Scaffold(
+      key: drawer.scaffoldKey,
+      drawer: CustomDrawerMenu(),
       body: TabBarView(
         controller: _tabController,
         children: [
