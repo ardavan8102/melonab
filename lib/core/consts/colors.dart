@@ -21,8 +21,8 @@ class AppSolidColors {
 
 class AppGradientColor {
 
-  static const List<Color> primaryFadeGradient = [
-    AppSolidColors.primary,
+  static List<Color> darkOverlayGradient = [
+    Colors.black87,
     Colors.transparent,
   ];
 

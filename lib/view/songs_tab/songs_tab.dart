@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
+import 'package:melonab/view/songs_tab/albums_tab.dart';
 import 'package:melonab/view/songs_tab/all_songs_tab.dart';
 import 'package:melonab/view_model/songs_tab_view_model.dart';
 import 'package:melonab/widgets/main_widgets/app_bar.dart';
@@ -71,7 +72,7 @@ class _SongsTabViewState extends State<SongsTabView> with SingleTickerProviderSt
                 controller: tabController,
                 children: [
                   AllSongsTab(),
-                  const Center(child: Text('Albums')),
+                  SongAlbumsTab(),
                   const Center(child: Text('Artists')),
                   const Center(child: Text('Playlists')),
                   const Center(child: Text('Genres')),

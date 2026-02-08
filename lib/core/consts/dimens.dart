@@ -8,6 +8,10 @@ class AppDimens {
 
   static const double largeCircularRadius = 100.0;
 
+  static const double thumbnailSmall = 50.0;
+  static const double thumbnailMedium = 80.0;
+  static const double thumbnailLarge = 120.0;
+
   static const double smallRadius = 10.0;
   static const double mediumRadius = 20.0;
   static const double largeRadius = 30.0;
