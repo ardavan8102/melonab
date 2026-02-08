@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:melonab/view/tabs/home_view.dart';
+import 'package:melonab/view/home/home_view.dart';
+import 'package:melonab/view/settings/settings_tab.dart';
+import 'package:melonab/view/songs_tab/songs_tab.dart';
 import 'package:melonab/view_model/drawer_menu_view_model.dart';
 import 'package:melonab/widgets/main_widgets/bottom_nav.dart';
 import 'package:melonab/widgets/drawer/drawer_menu.dart';
@@ -45,8 +47,7 @@ class _MainTabViewState extends State<MainTabView> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    
-    TextTheme textTheme = Theme.of(context).textTheme;
+
     final drawer = Get.find<DrawerMenuViewModel>();
 
     return Scaffold(
@@ -59,20 +60,10 @@ class _MainTabViewState extends State<MainTabView> with SingleTickerProviderStat
           HomeScreenView(),
 
           // songs view
-          Center(
-            child: Text(
-              'Songs View',
-              style: textTheme.headlineLarge,
-            ),
-          ),
+          SongsTabView(),
 
           // settings view
-          Center(
-            child: Text(
-              'Settings View',
-              style: textTheme.headlineLarge,
-            ),
-          ),
+          SettingsTabView(),
         ]
       ),
       bottomNavigationBar: FloatingBottomNavigationBar(tabController: _tabController, selectedTabIndex: _selectedTabIndex),

@@ -6,6 +6,8 @@ import 'package:melonab/core/consts/strings.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/gen/assets.gen.dart';
 import 'package:melonab/view_model/drawer_menu_view_model.dart';
+import 'package:melonab/view_model/home_view_model.dart';
+import 'package:melonab/view_model/song_lists_view_model.dart';
 import 'package:melonab/view_model/splash_view_model.dart';
 import 'package:melonab/widgets/loaders/circle_loader.dart';
 
@@ -27,6 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
     splashViewModel.animateOpacity();
     splashViewModel.loadView();
     Get.put(DrawerMenuViewModel());
+    Get.put(HomeViewModel());
+    Get.put(SongListsViewModel());
   }
 
   @override

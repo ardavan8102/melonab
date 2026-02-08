@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/view_model/home_view_model.dart';
+import 'package:melonab/view_model/song_lists_view_model.dart';
 import 'package:melonab/widgets/dividers/divider_custom.dart';
 import 'package:melonab/widgets/list_views/list_view_artists.dart';
 import 'package:melonab/widgets/list_views/list_view_djmix.dart';
@@ -19,7 +20,8 @@ class HomeScreenView extends StatefulWidget {
 
 class _HomeScreenViewState extends State<HomeScreenView> {
 
-  final homeViewModel = Get.put(HomeViewModel());
+  final HomeViewModel homeViewModel = Get.find<HomeViewModel>();
+  final SongListsViewModel songListsViewModel = Get.find<SongListsViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         homeViewModel.searchTextFocusNode.value.unfocus();
       },
       child: Scaffold(
-        appBar: CustomAppBar(homeViewModel: homeViewModel),
+        appBar: CustomAppBar(viewModel: homeViewModel),
         body: SizedBox(
           height: Get.height,
           width: Get.width,
@@ -47,7 +49,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                   AppDimens.mediumSpacing.height,
 
                   // List of hot recommended playlists
-                  ListViewHorizontal(listItems: homeViewModel.featuredPlaylists),
+                  ListViewHorizontal(listItems: songListsViewModel.featuredPlaylists),
 
                   // Divider
                   CustomDivider(),
@@ -63,7 +65,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                   AppDimens.mediumSpacing.height,
 
                   // List of hot recommended playlists
-                  ListViewArtists(listItems: homeViewModel.trendingArtists),
+                  ListViewArtists(listItems: songListsViewModel.trendingArtists),
 
                   // Divider
                   CustomDivider(),
@@ -80,7 +82,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                   AppDimens.mediumSpacing.height,
 
                   // List of hot recommended playlists
-                  ListViewDjmix(listItems: homeViewModel.djMixes),
+                  ListViewDjmix(listItems: songListsViewModel.djMixes),
 
                   // Divider
                   CustomDivider(),
@@ -94,7 +96,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                   AppDimens.mediumSpacing.height,
 
                   // List of hot recommended playlists
-                  ListViewHorizontal(listItems: homeViewModel.newPlaylists),
+                  ListViewHorizontal(listItems: songListsViewModel.newPlaylists),
 
                 ],
               ),

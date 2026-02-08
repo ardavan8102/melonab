@@ -5,15 +5,14 @@ import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/gen/assets.gen.dart';
 import 'package:melonab/view_model/drawer_menu_view_model.dart';
-import 'package:melonab/view_model/home_view_model.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
-    required this.homeViewModel,
+    required this.viewModel,
   });
 
-  final HomeViewModel homeViewModel;
+  final dynamic viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +45,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 borderRadius: BorderRadius.circular(AppDimens.mediumRadius),
               ),
               child: TextField(
-                focusNode: homeViewModel.searchTextFocusNode.value,
-                controller: homeViewModel.searchTextContoller.value,
+                focusNode: viewModel.searchTextFocusNode.value,
+                controller: viewModel.searchTextContoller.value,
                 style: textTheme.labelSmall!.copyWith(
                   color: AppSolidColors.primaryText,
                   fontWeight: .w400

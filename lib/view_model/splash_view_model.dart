@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:melonab/view/tabs/main_tab_handler.dart';
+import 'package:melonab/view/main_tab_handler.dart';
 
 class SplashViewModel extends GetxController {
 
