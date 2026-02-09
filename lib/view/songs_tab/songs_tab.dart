@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
-import 'package:melonab/view/songs_tab/albums_tab.dart';
+import 'package:melonab/view/songs_tab/artists_tab.dart';
+import 'package:melonab/view/songs_tab/playlists_tab.dart';
+import 'package:melonab/view/songs_tab/remix_tab.dart';
 import 'package:melonab/view/songs_tab/all_songs_tab.dart';
 import 'package:melonab/view_model/songs_tab_view_model.dart';
 import 'package:melonab/widgets/main_widgets/app_bar.dart';
@@ -26,7 +28,7 @@ class _SongsTabViewState extends State<SongsTabView> with SingleTickerProviderSt
   void initState() {
     super.initState();
 
-    tabController = TabController(length: 5, vsync: this);
+    tabController = TabController(length: 4, vsync: this);
     tabController!.addListener(() {
       selectedIndex = tabController?.index ?? 0;
       setState(() {});
@@ -60,10 +62,9 @@ class _SongsTabViewState extends State<SongsTabView> with SingleTickerProviderSt
               ),
               tabs: const [
                 Tab(height: AppDimens.marginLarge * 2, child: Text('تـرانـه هـا')),
-                Tab(height: AppDimens.marginLarge * 2, child: Text('آلبــوم هـا')),
+                Tab(height: AppDimens.marginLarge * 2, child: Text('ریمیـکـس هـا')),
                 Tab(height: AppDimens.marginLarge * 2, child: Text('هنرمنـدان')),
                 Tab(height: AppDimens.marginLarge * 2, child: Text('پـلی لیســت هـا')),
-                Tab(height: AppDimens.marginLarge * 2, child: Text('سبـکـ هـا')),
               ],
             ),
 
@@ -72,10 +73,9 @@ class _SongsTabViewState extends State<SongsTabView> with SingleTickerProviderSt
                 controller: tabController,
                 children: [
                   AllSongsTab(),
-                  SongAlbumsTab(),
-                  const Center(child: Text('Artists')),
-                  const Center(child: Text('Playlists')),
-                  const Center(child: Text('Genres')),
+                  RemixSongsTab(),
+                  ArtistsTab(),
+                  PlaylistsTab(),
                 ]
               )
             )
