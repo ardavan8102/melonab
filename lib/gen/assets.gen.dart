@@ -33,6 +33,13 @@ class $AssetsIconsGen {
   AssetGenImage get settings =>
       const AssetGenImage('assets/icons/settings.png');
 
+  /// File path: assets/icons/share.png
+  AssetGenImage get share => const AssetGenImage('assets/icons/share.png');
+
+  /// File path: assets/icons/submit_nazar.png
+  AssetGenImage get submitNazar =>
+      const AssetGenImage('assets/icons/submit_nazar.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     menu,
@@ -41,6 +48,8 @@ class $AssetsIconsGen {
     music,
     podcast,
     settings,
+    share,
+    submitNazar,
   ];
 }
 

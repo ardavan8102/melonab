@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 
@@ -8,10 +7,12 @@ class SideDrawerListTile extends StatelessWidget {
     super.key,
     required this.label,
     required this.iconPath,
+    required this.onTap,
   });
 
   final String label;
   final String iconPath;
+  final Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +26,7 @@ class SideDrawerListTile extends StatelessWidget {
       ),
       trailing: Icon(Icons.arrow_forward_ios, size: AppDimens.iconSizeSmall),
       title: Text(label),
-      onTap: () {
-        Get.back();
-      },
+      onTap: onTap,
     );
   }
 }
