@@ -1,48 +1,76 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
+import 'package:melonab/view_model/audio_player_viewmodel.dart';
+import 'package:melonab/widgets/main_widgets/audio_player_appbar.dart';
+import 'package:melonab/widgets/main_widgets/audio_progress_bar.dart';
+import 'package:melonab/widgets/rows/audio_player_controlls.dart';
 
-class AudioPlayerScreen extends StatelessWidget {
-  const AudioPlayerScreen({super.key});
+class AudioPlayerScreen extends StatefulWidget {
+  const AudioPlayerScreen({
+    super.key,
+    required this.photoUrl,
+    required this.audioUrl,
+    required this.artistName,
+    required this.songName
+  });
+
+  final String photoUrl;
+  final String audioUrl;
+  final String artistName;
+  final String songName;
+
+  @override
+  State<AudioPlayerScreen> createState() => _AudioPlayerScreenState();
+}
+
+class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
+  final audioPlayerViewModel = Get.put(AudioPlayerViewmodel());
+  late AudioPlayer _player;
+
+  @override
+  void initState() {
+    super.initState();
+    _player = audioPlayerViewModel.player;
+    _initializePlayer();
+    _player.setLoopMode(LoopMode.one);
+  }
+  
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
+
+  Future<void> _initializePlayer() async {
+    try {
+      final audioSource = AudioSource.uri(
+        Uri.parse(widget.audioUrl),
+        tag: MediaItem(
+          id: widget.audioUrl,
+          title: widget.songName,
+          artist: widget.artistName,
+          artUri: Uri.parse(widget.photoUrl),
+        ),
+      );
+
+      await _player.setAudioSource(audioSource);
+    } catch (e, stack) {
+      debugPrint('Player init failed: $e');
+      debugPrintStack(stackTrace: stack);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    String img = 'https://assets.rjassets.com/static/playlist/2388276/0ee09cd71aac48b-thumb.jpg';
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        title: Text('Song Name'),
-        centerTitle: true,
-        leading: Row(
-          children: [
-            AppDimens.paddingLarge.width,
-
-            GestureDetector(
-              child: Icon(
-                Icons.arrow_back_ios
-              ),
-              onTap: () => Get.back(),
-            ),
-          ],
-        ),
-        actions: [
-          GestureDetector(
-            child: Icon(
-              CupertinoIcons.bars
-            ),
-            onTap: () {},
-          ),
-
-          AppDimens.paddingLarge.width,
-        ],
-      ),
+      appBar: AudioPlayerAppBarWidget(widget: widget),
       body: Stack(
         alignment: .center,
         children: [
@@ -65,8 +93,8 @@ class AudioPlayerScreen extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(
-                        img,
+                      image: CachedNetworkImageProvider(
+                        widget.photoUrl,
                       ),
                       fit: BoxFit.cover,
                     ),
@@ -108,7 +136,7 @@ class AudioPlayerScreen extends StatelessWidget {
               ClipRRect(
                 borderRadius: .circular(AppDimens.mediumRadius),
                 child: CachedNetworkImage(
-                  imageUrl: img,
+                  imageUrl: widget.photoUrl,
                   width: Get.width * .6,
                   height: Get.width * .6,
                   fit: .cover,
@@ -118,18 +146,24 @@ class AudioPlayerScreen extends StatelessWidget {
               AppDimens.mediumSpacing.height,
 
               Text(
-                'Vaghteshe Beri',
+                widget.songName,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
 
               Text(
-                'Ashvan',
+                widget.artistName,
                 style: Theme.of(context).textTheme.labelLarge!.copyWith(
                   color: AppSolidColors.primaryText.withValues(alpha: .7)
                 ),
               ),
 
               AppDimens.largeSpacing.height,
+
+              AudioProgressBarWidget(stream: audioPlayerViewModel.positionDataStream, player: _player),
+
+              AppDimens.largeSpacing.height,
+
+              AudioPlayerControllsRow(audioPlayerViewModel: audioPlayerViewModel, player: _player),
 
               AppDimens.largeSpacing.height
             ],

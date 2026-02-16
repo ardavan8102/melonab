@@ -7,7 +7,6 @@ import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/core/models/playlist_model.dart';
 import 'package:melonab/gen/assets.gen.dart';
-import 'package:melonab/view/player/audio_player.dart';
 
 class ListViewHorizontal extends StatelessWidget {
   const ListViewHorizontal({super.key, required this.listItems});
@@ -32,7 +31,7 @@ class ListViewHorizontal extends StatelessWidget {
                   ? EdgeInsets.zero
                   : const EdgeInsets.only(left: AppDimens.paddingLarge),
               child: GestureDetector(
-                onTap: () => Get.to(() => AudioPlayerScreen()),
+                onTap: () {},
                 child: SizedBox(
                   width: Get.width * .6,
                   height: 200,
