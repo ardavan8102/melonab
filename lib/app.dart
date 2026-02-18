@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:melonab/core/theme/main_theme.dart';
-import 'package:melonab/view/splash.dart';
+import 'package:melonab/presentation/view/splash.dart';
 import 'package:get/get.dart';
 
 class MyApp extends StatefulWidget {
