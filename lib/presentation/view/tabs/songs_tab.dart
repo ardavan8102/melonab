@@ -3,7 +3,6 @@ import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/data/controllers/audio_controller.dart';
-import 'package:melonab/data/utils/format_duration.dart';
 import 'package:melonab/gen/assets.gen.dart';
 import 'package:melonab/presentation/widgets/buttons/filled_elevated_button.dart';
 import 'package:melonab/presentation/widgets/loading_circle.dart';
