@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/consts/strings.dart';
-import 'package:melonab/data/extensions/sized_box.dart';
+import 'package:melonab/core/extensions/sized_box.dart';
+import 'package:melonab/data/controllers/splash_screen_controller.dart';
 import 'package:melonab/gen/assets.gen.dart';
-import 'package:melonab/presentation/view_model/drawer_menu_view_model.dart';
-import 'package:melonab/presentation/view_model/home/home_view_model.dart';
-import 'package:melonab/presentation/view_model/home/home_items.dart';
-import 'package:melonab/presentation/view_model/splash_view_model.dart';
-import 'package:melonab/presentation/widgets/loaders/circle_loader.dart';
+import 'package:melonab/presentation/widgets/loading_circle.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,17 +18,14 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
-  final splashViewModel = Get.put(SplashViewModel());
+  final controller = Get.put(SplashScreenController());
 
   @override
   initState() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     super.initState();
-    splashViewModel.animateOpacity();
-    splashViewModel.loadView();
-    Get.put(DrawerMenuViewModel());
-    Get.put(HomeViewModel());
-    Get.put(HomeSectionsViewModel());
+    controller.animateOpacity();
+    controller.loadHomeScreen();
   }
 
   @override
@@ -40,17 +35,16 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Obx(
           () => AnimatedOpacity(
-            opacity: splashViewModel.opacity.value,
+            opacity: controller.opacity.value,
             duration: const Duration(seconds: 3),
             child: Column(
               mainAxisAlignment: .center,
               children: [
                 Spacer(),
             
-                // Logo
-                Image.asset(
-                  Assets.img.transparentLogo.path,
-                  width: Get.width * .5,
+                // Lottie animation
+                Lottie.asset(
+                  Assets.animations.musicSpaceman,
                 ),
             
                 // Brand Name
@@ -67,9 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 Spacer(),
             
                 // Loader
-                LoadingCircles(),
+                LoadingCircle(),
             
-                AppDimens.largeSpacing.height,
+                (AppDimens.marginLarge * 2).height,
               ],
             ),
           ),

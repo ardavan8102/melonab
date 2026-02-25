@@ -35,4 +35,6 @@ class AppDimens {
   static const double iconSizeSmall = 16.0;
   static const double iconSizeMedium = 24.0;
   static const double iconSizeLarge = 32.0;
+
+  static const double songListItemArtWorkSize = 70.0;
 }

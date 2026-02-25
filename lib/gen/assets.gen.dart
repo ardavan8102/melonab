@@ -11,6 +11,19 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsAnimationsGen {
+  const $AssetsAnimationsGen();
+
+  /// File path: assets/animations/loading.json
+  String get loading => 'assets/animations/loading.json';
+
+  /// File path: assets/animations/music_spaceman.json
+  String get musicSpaceman => 'assets/animations/music_spaceman.json';
+
+  /// List of all assets
+  List<String> get values => [loading, musicSpaceman];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -68,16 +81,6 @@ class $AssetsImgGen {
   List<AssetGenImage> get values => [melonabLogo, transparentLogo];
 }
 
-class $AssetsJsonGen {
-  const $AssetsJsonGen();
-
-  /// File path: assets/json/home_items.json
-  String get homeItems => 'assets/json/home_items.json';
-
-  /// List of all assets
-  List<String> get values => [homeItems];
-}
-
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
@@ -109,9 +112,9 @@ class $AssetsSvgGen {
 class Assets {
   const Assets._();
 
+  static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImgGen img = $AssetsImgGen();
-  static const $AssetsJsonGen json = $AssetsJsonGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 

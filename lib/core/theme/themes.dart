@@ -25,24 +25,32 @@ class AppThemes {
 
 
       // titles
+      titleLarge: TextStyle(
+        fontSize: 26,
+        fontWeight: .w700
+      ),
       titleMedium: TextStyle(
         fontSize: 24,
+        fontWeight: .w700
+      ),
+      titleSmall: TextStyle(
+        fontSize: 22,
         fontWeight: .w700
       ),
 
       // labels
       labelLarge: TextStyle(
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: .w600,
       ),
 
       labelMedium: TextStyle(
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: .w400,
       ),
 
       labelSmall: TextStyle(
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: .w300,
       ),
 

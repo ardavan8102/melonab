@@ -6,7 +6,7 @@ void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
   runApp(
     const MyApp()
