@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:melonab/core/consts/dimens.dart';
@@ -22,7 +21,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     super.initState();
     controller.animateOpacity();
     controller.loadHomeScreen();

@@ -86,6 +86,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/Menu.svg
   String get menu => 'assets/svg/Menu.svg';
 
+  /// File path: assets/svg/checklist.svg
+  String get checklist => 'assets/svg/checklist.svg';
+
   /// File path: assets/svg/dual_music_note.svg
   String get dualMusicNote => 'assets/svg/dual_music_note.svg';
 
@@ -98,13 +101,18 @@ class $AssetsSvgGen {
   /// File path: assets/svg/search.svg
   String get search => 'assets/svg/search.svg';
 
+  /// File path: assets/svg/sort.svg
+  String get sort => 'assets/svg/sort.svg';
+
   /// List of all assets
   List<String> get values => [
     menu,
+    checklist,
     dualMusicNote,
     heartMisBroke,
     musicNote,
     search,
+    sort,
   ];
 }
 

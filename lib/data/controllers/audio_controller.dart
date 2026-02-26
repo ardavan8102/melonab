@@ -13,7 +13,6 @@ class AudioController {
     _setupAudioPlayer();
   }
 
-
   final AudioPlayer audioPlayer = AudioPlayer();
   final OnAudioQuery audioQuery = OnAudioQuery();
 
@@ -22,6 +21,8 @@ class AudioController {
   final ValueNotifier<bool> isPlaying = ValueNotifier<bool>(false);
 
   final Map<int, Uint8List?> _artworkCache = {};
+  ConcatenatingAudioSource? _playlist;
+
 
   LocalSongModel? get currentSong => 
     currentIndex.value != -1 && currentIndex.value < songs.value.length 
@@ -31,28 +32,20 @@ class AudioController {
 
   void _setupAudioPlayer() {
 
-    audioPlayer.playerStateStream.listen(
-      (playerState) {
-
-        isPlaying.value = playerState.playing;
-
-        if ( playerState.processingState == ProcessingState.completed ) {
-
-          if ( currentIndex.value < songs.value.length - 1 ) {
-
-            playSong(currentIndex.value + 1);
-
-          } else {
-
-            currentIndex.value = -1;
-            isPlaying.value = false;
-
-          }
-
+    audioPlayer.processingStateStream.listen((state) async {
+      if (state == ProcessingState.completed) {
+        if (currentIndex.value < songs.value.length - 1) {
+          await playSong(currentIndex.value + 1);
+        } else {
+          currentIndex.value = -1;
+          isPlaying.value = false;
         }
-
       }
-    );
+    });
+
+    audioPlayer.playingStream.listen((playing) {
+      isPlaying.value = playing;
+    });
 
     audioPlayer.positionStream.listen(
       (_) {
@@ -84,53 +77,68 @@ class AudioController {
             : songs.artist ?? '',
         uri: songs.uri ?? '',
         albumTitle: songs.album ?? '',
-        duration: songs.duration ?? 0
+        duration: songs.duration ?? 0,
       )
     ).toList();
 
+    await buildPlaylist();
+
   }
 
-  // Functions for controlls
-  // Play
-  Future<void> playSong(int index) async {
 
-    if ( index < 0 || index >= songs.value.length ) return;
+  Future<void> buildPlaylist() async {
+    final List<AudioSource> audioSources = [];
 
-    try {
-      
-      if ( currentIndex.value == index && isPlaying.value ) {
+    for (final song in songs.value) {
 
-        await pauseSong();
-        return;
-
-      }
-
-      currentIndex.value = index;
-      final song = songs.value[index];
-
-      await audioPlayer.stop();
-
-      await audioPlayer.setAudioSource(
+      audioSources.add(
         AudioSource.uri(
           Uri.parse(song.uri),
           tag: MediaItem(
             id: song.id.toString(),
             title: song.title,
             artist: song.artist,
-            duration: Duration(milliseconds: song.duration),
+            album: song.albumTitle,
             artUri: null,
           ),
         ),
-        preload: true,
+      );
+    }
+
+    _playlist = ConcatenatingAudioSource(children: audioSources);
+
+    await audioPlayer.setAudioSource(_playlist!);
+  }
+
+  // Functions for controlls
+
+  Future<void> playSong(int index) async {
+    if (index < 0 || index >= songs.value.length) return;
+
+    try {
+      if (currentIndex.value == index) {
+        if (isPlaying.value) {
+          await pauseSong();
+        } else {
+          await resumeSong();
+        }
+        return;
+      }
+
+      // آهنگ جدید انتخاب شده
+      currentIndex.value = index;
+
+      await audioPlayer.seek(
+        Duration.zero,
+        index: index,
       );
 
       await audioPlayer.play();
       isPlaying.value = true;
 
     } catch (e) {
-      debugPrint('Playing Error : $e');
+      debugPrint('playSong error: $e');
     }
-
   }
 
   // Pause

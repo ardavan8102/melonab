@@ -16,6 +16,7 @@ class AppSolidColors {
 
   static const Color primaryIcon = Color(0xffffffff);
   static const Color dividerColor = Color(0xffffffff);
+  static const Color musicProgressBar = Color(0xffffffff);
 }
 
 
@@ -26,9 +27,9 @@ class AppGradientColor {
     Colors.transparent,
   ];
 
-  static const List<Color> secondaryFadeGradient = [
-    AppSolidColors.secondary,
-    Colors.transparent,
+  static List<Color> primaryFadeGradient = [
+    AppSolidColors.primary.withValues(alpha: .7),
+    Colors.transparent
   ];
 
 }

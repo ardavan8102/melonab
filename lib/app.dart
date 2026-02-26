@@ -21,8 +21,10 @@ class _MyAppState extends State<MyApp> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await JustAudioBackground.init(
         androidNotificationChannelId: 'com.melonab.app',
-        androidNotificationChannelName: 'Audio playback',
+        androidNotificationChannelName: 'Melonab Player',
         androidNotificationOngoing: true,
+        androidShowNotificationBadge: true,
+        androidNotificationIcon: 'mipmap/launcher_icon'
       );
     });
   }

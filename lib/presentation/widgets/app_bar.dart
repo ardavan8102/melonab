@@ -35,7 +35,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 titleColorful,
                 style: textTheme.titleSmall!.copyWith(
-                  color: AppSolidColors.primary,
+                  color: AppSolidColors.secondary,
                 ),
               )
             ),
