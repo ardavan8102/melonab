@@ -32,4 +32,11 @@ class AppGradientColor {
     Colors.transparent
   ];
 
+
+  static List<Color> scaffoldBackgroundGradient = [
+    AppSolidColors.accent.withValues(alpha: .3),
+    AppSolidColors.primary.withValues(alpha: .3),
+    AppSolidColors.secondary.withValues(alpha: .3),
+  ];
+
 }

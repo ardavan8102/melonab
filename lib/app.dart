@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:just_audio_background/just_audio_background.dart';
 import 'package:melonab/core/theme/main_theme.dart';
 import 'package:melonab/presentation/view/splash.dart';
 import 'package:get/get.dart';
@@ -13,21 +12,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await JustAudioBackground.init(
-        androidNotificationChannelId: 'com.melonab.app',
-        androidNotificationChannelName: 'Melonab Player',
-        androidNotificationOngoing: true,
-        androidShowNotificationBadge: true,
-        androidNotificationIcon: 'mipmap/launcher_icon'
-      );
-    });
-  }
   
   @override
   Widget build(BuildContext context) {

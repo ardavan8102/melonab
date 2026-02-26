@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
@@ -93,10 +94,13 @@ class _SongsTabViewState extends State<SongsTabView> {
                             },
                             child: Container(
                               padding: EdgeInsets.all(AppDimens.paddingMedium),
+                              margin: index == songs.length - 1 
+                                ? EdgeInsets.only(bottom: Get.height * .2) 
+                                : .zero,
                               decoration: BoxDecoration(
                                 border: Border(
                                   bottom: index == songs.length - 1 
-                                    ? BorderSide(width: 0)
+                                    ? BorderSide(width: 0, color: Colors.transparent)
                                     : BorderSide(
                                       width: 1,
                                       color: AppSolidColors.dividerColor.withValues(alpha: .1)

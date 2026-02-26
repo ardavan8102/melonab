@@ -57,25 +57,24 @@ class AudioController {
 
     final fetchSongs = await audioQuery.querySongs(
       sortType: .DATE_ADDED,
-      orderType: .ASC_OR_SMALLER,
+      orderType: .DESC_OR_GREATER,
       uriType: .EXTERNAL,
       ignoreCase: true,
     );
 
-    songs.value = fetchSongs.map(
-      (songs) => LocalSongModel(
-        id: songs.id,
-        title: songs.title,
-        artist: songs.artist == null 
-          ? 'هنرمنـد ناشنـاس' 
-          : songs.artist == '<unknown>' 
-            ? 'هنرمنـد ناشنـاس' 
-            : songs.artist ?? '',
-        uri: songs.uri ?? '',
-        albumTitle: songs.album ?? '',
-        duration: songs.duration ?? 0,
-      )
-    ).toList();
+    songs.value = fetchSongs
+      .map((s) => LocalSongModel(
+        id: s.id,
+        title: s.title,
+        artist: (s.artist == null || s.artist == '<unknown>')
+            ? 'هنرمنـد ناشناس'
+            : s.artist!,
+        uri: s.uri!,
+        albumTitle: s.album ?? '',
+        duration: s.duration ?? 0,
+      ))
+      .toList()
+      ..sort((a, b) => b.id.compareTo(a.id));
 
     await buildPlaylist();
 

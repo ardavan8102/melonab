@@ -63,7 +63,7 @@ class _PageHandlerScreenState extends State<PageHandlerScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 4,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
@@ -81,11 +81,7 @@ class _PageHandlerScreenState extends State<PageHandlerScreen> {
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      AppSolidColors.accent.withValues(alpha: .3),
-                      AppSolidColors.primary.withValues(alpha: .3),
-                      AppSolidColors.secondary.withValues(alpha: .3),
-                    ],
+                    colors: AppGradientColor.scaffoldBackgroundGradient,
                     begin: .bottomLeft,
                     end: .topRight,
                   ),
@@ -123,23 +119,19 @@ class _PageHandlerScreenState extends State<PageHandlerScreen> {
                       splashBorderRadius: BorderRadius.vertical(top: Radius.circular(AppDimens.smallRadius)),
                       tabs: [
                         Tab(
-                          text: 'آهنگ ها',
-                        ),
-                      
-                        Tab(
-                          text: 'آلبوم ها',
-                        ),
-                      
-                        Tab(
-                          text: 'هنرمند ها',
+                          text: 'تک آهنگ ها',
                         ),
                 
                         Tab(
-                          text: 'پوشه ها',
+                          text: 'سبک ها',
                         ),
                       
                         Tab(
-                          text: 'سبک ها',
+                          text: 'پلی لیست ها',
+                        ),
+
+                        Tab(
+                          text: 'دانلود موزیک',
                         ),
                       ],
                     ),
@@ -152,14 +144,12 @@ class _PageHandlerScreenState extends State<PageHandlerScreen> {
                           physics: const NeverScrollableScrollPhysics(), // Disable page swipe
                           children: [
                             SongsTabView(),
-                        
-                            Center(child: Text('Albums')),
-                        
-                            Center(child: Text('Artists')),
-                                        
-                            Center(child: Text('Folders')),
-                        
+  
                             Center(child: Text('Genres')),
+                        
+                            Center(child: Text('Playlists')),
+
+                            Center(child: Text('DOWNLOAD')),
                           ]
                         ),
                       ),
