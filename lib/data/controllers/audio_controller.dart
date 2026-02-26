@@ -32,14 +32,10 @@ class AudioController {
 
   void _setupAudioPlayer() {
 
-    audioPlayer.processingStateStream.listen((state) async {
-      if (state == ProcessingState.completed) {
-        if (currentIndex.value < songs.value.length - 1) {
-          await playSong(currentIndex.value + 1);
-        } else {
-          currentIndex.value = -1;
-          isPlaying.value = false;
-        }
+    // Sync currentIndex with audio player's actual index
+    audioPlayer.currentIndexStream.listen((index) {
+      if (index != null) {
+        currentIndex.value = index;
       }
     });
 
@@ -111,7 +107,7 @@ class AudioController {
   }
 
   // Functions for controlls
-
+  // play song
   Future<void> playSong(int index) async {
     if (index < 0 || index >= songs.value.length) return;
 

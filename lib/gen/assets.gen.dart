@@ -36,6 +36,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/album.png
   AssetGenImage get album => const AssetGenImage('assets/icons/album.png');
 
+  /// File path: assets/icons/app_icon.png
+  AssetGenImage get appIcon => const AssetGenImage('assets/icons/app_icon.png');
+
   /// File path: assets/icons/home.png
   AssetGenImage get home => const AssetGenImage('assets/icons/home.png');
 
@@ -60,6 +63,7 @@ class $AssetsIconsGen {
   List<AssetGenImage> get values => [
     menu,
     album,
+    appIcon,
     home,
     music,
     podcast,
