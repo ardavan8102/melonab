@@ -100,7 +100,7 @@ class BottomPlayer extends StatelessWidget {
                         height: 60,
                         width: 60,
                         fit: .cover,
-                        Assets.animations.loading
+                        Assets.animations.loading,
                       ),
                     ),
 

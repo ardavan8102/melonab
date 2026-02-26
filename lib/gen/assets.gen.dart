@@ -20,8 +20,11 @@ class $AssetsAnimationsGen {
   /// File path: assets/animations/music_spaceman.json
   String get musicSpaceman => 'assets/animations/music_spaceman.json';
 
+  /// File path: assets/animations/music_volume_white.json
+  String get musicVolumeWhite => 'assets/animations/music_volume_white.json';
+
   /// List of all assets
-  List<String> get values => [loading, musicSpaceman];
+  List<String> get values => [loading, musicSpaceman, musicVolumeWhite];
 }
 
 class $AssetsIconsGen {
@@ -73,12 +76,8 @@ class $AssetsImgGen {
   AssetGenImage get melonabLogo =>
       const AssetGenImage('assets/img/melonab_logo.png');
 
-  /// File path: assets/img/transparent_logo.png
-  AssetGenImage get transparentLogo =>
-      const AssetGenImage('assets/img/transparent_logo.png');
-
   /// List of all assets
-  List<AssetGenImage> get values => [melonabLogo, transparentLogo];
+  List<AssetGenImage> get values => [melonabLogo];
 }
 
 class $AssetsSvgGen {

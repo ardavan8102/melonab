@@ -62,6 +62,7 @@ flutter:
     # json assets
     - assets/animations/loading.json
     - assets/animations/music_spaceman.json
+    - assets/animations/music_volume_white.json
 
   fonts:
     - family: YekanBakh

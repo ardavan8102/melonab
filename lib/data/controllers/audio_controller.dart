@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -19,6 +20,8 @@ class AudioController {
   final ValueNotifier<List<LocalSongModel>> songs = ValueNotifier<List<LocalSongModel>>([]);
   final ValueNotifier<int> currentIndex = ValueNotifier<int>(-1);
   final ValueNotifier<bool> isPlaying = ValueNotifier<bool>(false);
+
+  final Map<int, Uint8List?> _artworkCache = {};
 
   LocalSongModel? get currentSong => 
     currentIndex.value != -1 && currentIndex.value < songs.value.length 
@@ -74,15 +77,18 @@ class AudioController {
       (songs) => LocalSongModel(
         id: songs.id,
         title: songs.title,
-        artist: songs.artist == null ? 'هنرمنـد ناشنـاس' : songs.artist == '<unknown>' ? 'هنرمنـد ناشنـاس' : songs.artist ?? '',
+        artist: songs.artist == null 
+          ? 'هنرمنـد ناشنـاس' 
+          : songs.artist == '<unknown>' 
+            ? 'هنرمنـد ناشنـاس' 
+            : songs.artist ?? '',
         uri: songs.uri ?? '',
-        album: songs.album ?? '',
+        albumTitle: songs.album ?? '',
         duration: songs.duration ?? 0
       )
     ).toList();
 
   }
-
 
   // Functions for controlls
   // Play
@@ -188,6 +194,25 @@ class AudioController {
 
     }
     
+  }
+
+  // Get Artwork
+  Future<Uint8List?> getArtwork(LocalSongModel song) async {
+    if (_artworkCache.containsKey(song.id)) {
+      return _artworkCache[song.id];
+    }
+
+    final art = await audioQuery.queryArtwork(
+      song.id,
+      ArtworkType.AUDIO,
+      size: 200,
+      quality: 80,
+    );
+
+    _artworkCache[song.id] = art;
+    song.thumbnail = art;
+
+    return art;
   }
 
 

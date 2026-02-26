@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:melonab/core/consts/colors.dart';
 import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/data/controllers/audio_controller.dart';
 import 'package:melonab/gen/assets.gen.dart';
+import 'package:melonab/presentation/widgets/build_artwork.dart';
 import 'package:melonab/presentation/widgets/buttons/filled_elevated_button.dart';
 import 'package:melonab/presentation/widgets/loading_circle.dart';
 
@@ -60,13 +62,12 @@ class _SongsTabViewState extends State<SongsTabView> {
                           child: Row(
                             children: [
                               // Art
-                              Image.asset(
-                                Assets.img.melonabLogo.path,
-                                width: AppDimens.songListItemArtWorkSize,
-                                height: AppDimens.songListItemArtWorkSize,
+                              BuildArtwork(
+                                song: song,
+                                audioController: audioController,
                               ),
 
-                              AppDimens.marginSmall.width,
+                              AppDimens.marginMedium.width,
                         
                               // Details
                               Expanded(
@@ -90,6 +91,8 @@ class _SongsTabViewState extends State<SongsTabView> {
                                   ],
                                 ),
                               ),
+
+                              AppDimens.marginMedium.width,
                         
                               // Play button
                               FilledCustomButton(
@@ -97,11 +100,15 @@ class _SongsTabViewState extends State<SongsTabView> {
                                 backgroundColor: isCurrentSong && isPlaying
                                   ? AppSolidColors.primary
                                   : AppSolidColors.primary.withValues(alpha: .4),
-                                child: Icon(
-                                  isCurrentSong && isPlaying
-                                    ? Icons.pause_rounded
-                                    : Icons.play_arrow_rounded
-                                ),
+                                child: isCurrentSong && isPlaying
+                                  ? Lottie.asset(
+                                      Assets.animations.musicVolumeWhite,
+                                      width: AppDimens.iconSizeMedium
+                                    )
+                                  : Icon(
+                                      Icons.play_arrow_rounded,
+                                      size: AppDimens.iconSizeMedium,
+                                    ),
                               )
                             ],
                           ),
