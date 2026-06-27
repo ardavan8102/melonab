@@ -7,9 +7,10 @@ import 'package:melonab/core/consts/dimens.dart';
 import 'package:melonab/core/extensions/sized_box.dart';
 import 'package:melonab/data/controllers/audio_controller.dart';
 import 'package:melonab/gen/assets.gen.dart';
+import 'package:melonab/presentation/view/tabs/playlists_tab.dart';
 import 'package:melonab/presentation/view/tabs/songs_tab.dart';
 import 'package:melonab/presentation/widgets/app_bar.dart';
-import 'package:melonab/presentation/widgets/bottom_player.dart';
+import 'package:melonab/presentation/widgets/containers/bottom_player.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PageHandlerScreen extends StatefulWidget {
@@ -21,6 +22,7 @@ class PageHandlerScreen extends StatefulWidget {
 
 class _PageHandlerScreenState extends State<PageHandlerScreen> {
 
+  // ignore: unused_field
   bool _hasPermission = false;
 
   final audioController = AudioController();
@@ -63,7 +65,7 @@ class _PageHandlerScreenState extends State<PageHandlerScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 2,
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
@@ -111,27 +113,19 @@ class _PageHandlerScreenState extends State<PageHandlerScreen> {
                     AppDimens.marginSmall.height,
                 
                     TabBar(
-                      isScrollable: true,
+                      tabAlignment: .fill,
+                      isScrollable: false,
                       indicatorColor: AppSolidColors.primary,
                       labelColor: AppSolidColors.primaryText,
                       unselectedLabelColor: AppSolidColors.primaryText.withValues(alpha: .4),
-                      physics: const ClampingScrollPhysics(),
                       splashBorderRadius: BorderRadius.vertical(top: Radius.circular(AppDimens.smallRadius)),
                       tabs: [
                         Tab(
-                          text: 'تک آهنگ ها',
-                        ),
-                
-                        Tab(
-                          text: 'سبک ها',
-                        ),
-                      
-                        Tab(
-                          text: 'پلی لیست ها',
+                          text: 'همـه آهنگـ ها',
                         ),
 
                         Tab(
-                          text: 'دانلود موزیک',
+                          text: 'پلـی لیست ها',
                         ),
                       ],
                     ),
@@ -144,12 +138,8 @@ class _PageHandlerScreenState extends State<PageHandlerScreen> {
                           physics: const NeverScrollableScrollPhysics(), // Disable page swipe
                           children: [
                             SongsTabView(),
-  
-                            Center(child: Text('Genres')),
                         
-                            Center(child: Text('Playlists')),
-
-                            Center(child: Text('DOWNLOAD')),
+                            CustomPlaylistsTabPage()
                           ]
                         ),
                       ),

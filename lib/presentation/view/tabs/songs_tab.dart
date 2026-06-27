@@ -55,18 +55,6 @@ class _SongsTabViewState extends State<SongsTabView> {
                       colorFilter: ColorFilter.mode(AppSolidColors.primaryIcon, BlendMode.srcIn),
                     ),
                   ),
-    
-                  AppDimens.marginLarge.width,
-    
-                  SizedBox(
-                    height: AppDimens.iconSizeMedium,
-                    width: AppDimens.iconSizeMedium,
-                    child: SvgPicture.asset(
-                      colorFilter: ColorFilter.mode(AppSolidColors.primaryIcon, BlendMode.srcIn),
-                      Assets.svg.checklist,
-                      fit: .cover,
-                    ),
-                  ),
                 ],
               ),
             ),

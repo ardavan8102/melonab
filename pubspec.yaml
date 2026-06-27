@@ -43,6 +43,7 @@ flutter:
     # PNG assets
     - assets/img/melonab_logo.png
     - assets/icons/app_icon.png
+    - assets/img/logo_2.png
 
     # Icon Assets
     - assets/icons/music.png
